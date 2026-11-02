@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#d6221d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pokédex Scan">
+  <title>Pokédex Scanner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="dex" id="dex" data-mode="scan">
+
+    <!-- ===== top hardware: lens + LEDs ===== -->
+    <header class="top">
+      <div class="lens" id="lens"><i></i></div>
+      <div class="leds"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div class="title">POKÉDEX</div>
+    </header>
+
+    <!-- ===== bezel + screen ===== -->
+    <section class="bezel">
+      <div class="bezel-dots"><span></span><span></span></div>
+
+      <div class="screen" id="screen">
+
+        <!-- scan mode: live camera -->
+        <div class="view view-scan" id="viewScan">
+          <video id="video" playsinline muted autoplay></video>
+          <div class="reticle"><b></b><b></b><b></b><b></b><em></em></div>
+          <div class="scan-msg" id="scanMsg">POINT AT A TRAINER</div>
+          <div class="no-cam" id="noCam" hidden>
+            <p>CAMERA UNAVAILABLE</p>
+            <small>Allow camera access, or upload a photo instead.</small>
+          </div>
+        </div>
+
+        <!-- result mode: the entry -->
+        <div class="view view-entry" id="viewEntry">
+          <div class="photo">
+            <img id="photo" alt="Your scanned photo">
+            <span class="tag-no" id="dexNo">№ ---</span>
+            <img class="sprite" id="sprite" alt="" crossorigin="anonymous" hidden>
+            <div class="analyzing" id="analyzing"><span>ANALYZING<i>.</i><i>.</i><i>.</i></span></div>
+          </div>
+          <div class="info">
+            <h1 id="name" class="name">???</h1>
+            <p class="genus" id="genus">&nbsp;</p>
+            <div class="stats">
+              <span class="chips" id="types"></span>
+              <span class="hw"><b>HT</b> <i id="ht">-</i></span>
+              <span class="hw"><b>WT</b> <i id="wt">-</i></span>
+            </div>
+            <p class="desc" id="desc"></p>
+          </div>
+        </div>
+
+        <div class="lcd-gloss"></div>
+      </div>
+
+      <div class="bezel-foot">
+        <span class="dot"></span>
+        <span class="vents"><i></i><i></i><i></i></span>
+      </div>
+    </section>
+
+    <!-- ===== controls ===== -->
+    <nav class="ctrl">
+      <button class="a-btn" id="btnShutter" aria-label="Scan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 7.2 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3.2L15 4H9Zm3 4.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"/></svg><span id="shutterLbl">SCAN</span></button>
+      <div class="pills">
+        <button class="pill" id="btnFlip">FLIP</button>
+        <button class="pill" id="btnUpload">UPLOAD</button>
+        <button class="pill" id="btnReroll">RE-ROLL</button>
+        <button class="pill" id="btnSave">SAVE</button>
+      </div>
+    </nav>
+
+    <input type="file" id="file" accept="image/*" hidden>
+    <canvas id="work" hidden></canvas>
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+
+  <script src="fallback.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
