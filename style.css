@@ -270,3 +270,12 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* match readout */
+.match {
+  position: absolute; left: 6px; bottom: 6px; max-width: 62%;
+  font-family: var(--pix); font-size: 8px; line-height: 1.5; color: #d6ffe2;
+  background: rgba(8, 24, 16, .85); border: 2px solid #bfe9cf; border-radius: 4px; padding: 5px 6px 4px;
+}
+.match:empty { display: none; }
+.analyzing small { display: block; margin-top: 10px; font-size: 8px; color: #7dffa0; text-align: center; letter-spacing: .5px; }

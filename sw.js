@@ -1,5 +1,5 @@
 // Offline-capable shell. App files are cache-first; PokeAPI data/artwork is cached as it's used.
-const VERSION = "pokedex-v1";
+const VERSION = "pokedex-v2";
 const SHELL = ["./", "index.html", "style.css", "app.js", "fallback.js", "manifest.webmanifest",
   "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png"];
 
